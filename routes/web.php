@@ -20,3 +20,8 @@ Route::get('/', function () {
 Route::get('/hello_world', function(){
     return view('hello_world');
 });
+
+
+Route::get('/about_us', function () {
+    return view('layouts.about_us', ['name' => 'Laravel 範例']);
+});
