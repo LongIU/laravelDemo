@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InspiringController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,7 @@ Route::get('/hello_world', function(){
 Route::get('/about_us', function () {
     return view('layouts.about_us', ['name' => 'Laravel 範例']);
 });
+
+
+//8版預設不會帶入username前綴，所以使用'InspiringController@inspire'會是噴錯
+Route::get('/inspire', [InspiringController::class, 'inspire']);
