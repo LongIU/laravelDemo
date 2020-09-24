@@ -9,9 +9,9 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 /**
- * The following block of code may be used to automatically register your
+ * The following block of code may be used to automatically  your
  * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
+ * components and automatically  them with their "basename".
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */

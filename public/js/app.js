@@ -621,7 +621,7 @@ InterceptorManager.prototype.eject = function eject(id) {
 };
 
 /**
- * Iterate over all the registered interceptors
+ * Iterate over all the ed interceptors
  *
  * This method is particularly useful for skipping over any
  * interceptors that may have become `null` calling `eject`.
@@ -4555,7 +4555,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var $target = $(target).one(EVENT_SHOW$2, function (showEvent) {
       if (showEvent.isDefaultPrevented()) {
-        // Only register focus restorer if modal will actually get shown
+        // Only  focus restorer if modal will actually get shown
         return;
       }
 
@@ -11980,7 +11980,7 @@ function leverageNative( el, type, expectSync ) {
 		return;
 	}
 
-	// Register the controller as a special universal handler for all event namespaces
+	//  the controller as a special universal handler for all event namespaces
 	dataPriv.set( el, type, false );
 	jQuery.event.add( el, type, {
 		namespace: false,
@@ -17177,10 +17177,10 @@ jQuery.trim = function( text ) {
 
 
 
-// Register as a named AMD module, since jQuery can be concatenated with other
+//  as a named AMD module, since jQuery can be concatenated with other
 // files that may use define, but not via a proper concatenation script that
 // understands anonymous AMD modules. A named AMD is safest and most robust
-// way to register. Lowercase jquery is used because AMD module names are
+// way to . Lowercase jquery is used because AMD module names are
 // derived from file names, and jQuery is normally delivered in a lowercase
 // file name. Do this after creating the global so that if an AMD module wants
 // to call noConflict to hide this version of jQuery, it will work.
@@ -37244,7 +37244,7 @@ process.umask = function() { return 0; };
     var tasksByHandle = {};
     var currentlyRunningATask = false;
     var doc = global.document;
-    var registerImmediate;
+    var Immediate;
 
     function setImmediate(callback) {
       // Callback can either be a function or a string
@@ -37256,10 +37256,10 @@ process.umask = function() { return 0; };
       for (var i = 0; i < args.length; i++) {
           args[i] = arguments[i + 1];
       }
-      // Store and register the task
+      // Store and  the task
       var task = { callback: callback, args: args };
       tasksByHandle[nextHandle] = task;
-      registerImmediate(nextHandle);
+      Immediate(nextHandle);
       return nextHandle++;
     }
 
@@ -37311,7 +37311,7 @@ process.umask = function() { return 0; };
     }
 
     function installNextTickImplementation() {
-        registerImmediate = function(handle) {
+        Immediate = function(handle) {
             process.nextTick(function () { runIfPresent(handle); });
         };
     }
@@ -37351,7 +37351,7 @@ process.umask = function() { return 0; };
             global.attachEvent("onmessage", onGlobalMessage);
         }
 
-        registerImmediate = function(handle) {
+        Immediate = function(handle) {
             global.postMessage(messagePrefix + handle, "*");
         };
     }
@@ -37363,14 +37363,14 @@ process.umask = function() { return 0; };
             runIfPresent(handle);
         };
 
-        registerImmediate = function(handle) {
+        Immediate = function(handle) {
             channel.port2.postMessage(handle);
         };
     }
 
     function installReadyStateChangeImplementation() {
         var html = doc.documentElement;
-        registerImmediate = function(handle) {
+        Immediate = function(handle) {
             // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
             // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
             var script = doc.createElement("script");
@@ -37385,7 +37385,7 @@ process.umask = function() { return 0; };
     }
 
     function installSetTimeoutImplementation() {
-        registerImmediate = function(handle) {
+        Immediate = function(handle) {
             setTimeout(runIfPresent, 0, handle);
         };
     }
@@ -37610,14 +37610,14 @@ function normalizeComponent (
       if (injectStyles) {
         injectStyles.call(this, context)
       }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
+      //  component module identifier for async chunk inferrence
+      if (context && context._edComponents) {
+        context._edComponents.add(moduleIdentifier)
       }
     }
     // used by ssr in case component is cached and beforeCreate
     // never gets called
-    options._ssrRegister = hook
+    options._ssr = hook
   } else if (injectStyles) {
     hook = shadowMode
       ? function () {
@@ -37634,7 +37634,7 @@ function normalizeComponent (
       // for template-only hot-reload because in that case the render fn doesn't
       // go through the normalizer
       options._injectStyles = hook
-      // register for functional component in vue file
+      //  for functional component in vue file
       var originalRender = options.render
       options.render = function renderWithStyleInjection (h, context) {
         hook.call(context)
@@ -38093,7 +38093,7 @@ var config = ({
   keyCodes: Object.create(null),
 
   /**
-   * Check if a tag is reserved so that it cannot be registered as a
+   * Check if a tag is reserved so that it cannot be ed as a
    * component. This is platform-dependent and may be overwritten.
    */
   isReservedTag: no,
@@ -41107,7 +41107,7 @@ function _createElement (
     return vnode
   } else if (isDef(vnode)) {
     if (isDef(ns)) { applyNS(vnode, ns); }
-    if (isDef(data)) { registerDeepBindings(data); }
+    if (isDef(data)) { DeepBindings(data); }
     return vnode
   } else {
     return createEmptyVNode()
@@ -41135,7 +41135,7 @@ function applyNS (vnode, ns, force) {
 // ref #5318
 // necessary to ensure parent re-render when deep bindings like :style and
 // :class are used on slot nodes
-function registerDeepBindings (data) {
+function DeepBindings (data) {
   if (isObject(data.style)) {
     traverse(data.style);
   }
@@ -41537,7 +41537,7 @@ function eventsMixin (Vue) {
       if (lowerCaseEvent !== event && vm._events[lowerCaseEvent]) {
         tip(
           "Event \"" + lowerCaseEvent + "\" is emitted in component " +
-          (formatComponentName(vm)) + " but the handler is registered for \"" + event + "\". " +
+          (formatComponentName(vm)) + " but the handler is ed for \"" + event + "\". " +
           "Note that HTML attributes are case-insensitive and you cannot use " +
           "v-on to listen to camelCase events when using in-DOM templates. " +
           "You should probably use \"" + (hyphenate(event)) + "\" instead of \"" + event + "\"."
@@ -42834,7 +42834,7 @@ function initExtend (Vue) {
     Sub.mixin = Super.mixin;
     Sub.use = Super.use;
 
-    // create asset registers, so extended classes
+    // create asset s, so extended classes
     // can have their private assets too.
     ASSET_TYPES.forEach(function (type) {
       Sub[type] = Super[type];
@@ -42873,7 +42873,7 @@ function initComputed$1 (Comp) {
 
 /*  */
 
-function initAssetRegisters (Vue) {
+function initAssets (Vue) {
   /**
    * Create asset registration methods.
    */
@@ -43009,7 +43009,7 @@ var KeepAlive = {
       var cache = ref$1.cache;
       var keys = ref$1.keys;
       var key = vnode.key == null
-        // same constructor may get registered as different local components
+        // same constructor may get ed as different local components
         // so cid alone is not enough (#3269)
         ? componentOptions.Ctor.cid + (componentOptions.tag ? ("::" + (componentOptions.tag)) : '')
         : vnode.key;
@@ -43086,7 +43086,7 @@ function initGlobalAPI (Vue) {
   initUse(Vue);
   initMixin$1(Vue);
   initExtend(Vue);
-  initAssetRegisters(Vue);
+  initAssets(Vue);
 }
 
 initGlobalAPI(Vue);
@@ -43415,20 +43415,20 @@ var nodeOps = /*#__PURE__*/Object.freeze({
 
 var ref = {
   create: function create (_, vnode) {
-    registerRef(vnode);
+    Ref(vnode);
   },
   update: function update (oldVnode, vnode) {
     if (oldVnode.data.ref !== vnode.data.ref) {
-      registerRef(oldVnode, true);
-      registerRef(vnode);
+      Ref(oldVnode, true);
+      Ref(vnode);
     }
   },
   destroy: function destroy (vnode) {
-    registerRef(vnode, true);
+    Ref(vnode, true);
   }
 };
 
-function registerRef (vnode, isRemoval) {
+function Ref (vnode, isRemoval) {
   var key = vnode.data.ref;
   if (!isDef(key)) { return }
 
@@ -43596,7 +43596,7 @@ function createPatchFunction (backend) {
         if (isUnknownElement$$1(vnode, creatingElmInVPre)) {
           warn(
             'Unknown custom element: <' + tag + '> - did you ' +
-            'register the component correctly? For recursive components, ' +
+            ' the component correctly? For recursive components, ' +
             'make sure to provide the "name" option.',
             vnode.context
           );
@@ -43663,7 +43663,7 @@ function createPatchFunction (backend) {
     } else {
       // empty component root.
       // skip all element-related modules except for ref (#3455)
-      registerRef(vnode);
+      Ref(vnode);
       // make sure to invoke the insert hook
       insertedVnodeQueue.push(vnode);
     }
@@ -44204,7 +44204,7 @@ function createPatchFunction (backend) {
                 }
               }
             } else {
-              registerRef(ancestor);
+              Ref(ancestor);
             }
             ancestor = ancestor.parent;
           }
@@ -49724,9 +49724,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
- * The following block of code may be used to automatically register your
+ * The following block of code may be used to automatically  your
  * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
+ * components and automatically  them with their "basename".
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
@@ -49818,7 +49818,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -49838,7 +49838,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\InspiringController;
 use App\Models\Post;
 use App\Models\Subject;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -182,3 +183,7 @@ Route::get('/test', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/testA', function () {
+    echo Auth::check() . "<br />" . Auth::user();
+});
