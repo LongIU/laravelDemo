@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InspiringController;
+use App\Models\Post;
 use App\Models\Subject;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello_world', function(){
+Route::get('/hello_world', function () {
     return view('hello_world');
 });
 
@@ -32,6 +33,7 @@ Route::get('/about_us', function () {
 
 //8版預設不會帶入username前綴，所以使用'InspiringController@inspire'會是噴錯
 Route::get('/inspire', [InspiringController::class, 'inspire']);
+
 
 
 /*
@@ -141,5 +143,38 @@ Route::get('/sub5', function () {
         'name' => 'stitch'
     ]);
     return $post;
+});
+*/
+
+/*
+//用 get_class() 這個函式來看看 Laravel 取得的物件類別
+Route::get('/test2', function () {
+    return get_class(Post::all()) . '========' . get_class(Post::cursor());
+});
+
+
+Route::get('/test', function () {
+    // 範例yield用法
+    // function getLargeData()
+    // {
+    //     // $returnData = [];
+    //     for ($index = 0;$index <= 10000; $index++){
+    //         // $returnData[] = $index;
+    //         yield $index;
+    //     }
+    //     // return $returnData;
+    // }
+
+    // $largeDataRows = getLargeData();
+    // echo get_class($largeDataRows) . "<br />";
+    // foreach($largeDataRows as $row){
+    //     echo $row . "<br />";
+    // }
+
+    //練習 LazyCollection (Illuminate\Support\LazyCollection)
+    //
+    return Post::cursor()->filter(function ($post) {
+        return $post->id > 9500;
+    });
 });
 */
