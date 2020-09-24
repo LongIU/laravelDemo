@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InspiringController;
+use App\Models\Subject;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,21 @@ Route::get('/about_us', function () {
 //8版預設不會帶入username前綴，所以使用'InspiringController@inspire'會是噴錯
 Route::get('/inspire', [InspiringController::class, 'inspire']);
 
+
+/*
+//學習一對多關聯(注意id資料必須要存在)
+Route::get('/test', function () {
+    $subject = Subject::find(1);
+    $posts = $subject->posts;
+    return $posts;
+});
+
+Route::get('/test2', function () {
+    $posts = App\Models\Post::find(6);
+    $subject = $posts->subject;
+    return $subject;
+});
+*/
 
 /*
 //練習存取DB
