@@ -30,3 +30,82 @@ Route::get('/about_us', function () {
 
 //8版預設不會帶入username前綴，所以使用'InspiringController@inspire'會是噴錯
 Route::get('/inspire', [InspiringController::class, 'inspire']);
+
+
+/*
+//練習存取DB
+Route::get('/test', function () {
+    // return App\Models\Post::find(1);
+    //$post = App\Models\Post::find(1);
+    //$post->content = 'Laravel demo save';
+    //$post->save();
+    //return $post;
+
+    $posts = App\Models\Post::all();
+    $posts->each->update([
+        'content' => 'Laravel demo update'
+    ]);
+    $post = $posts->map(function($item){
+        return $item->content;
+    });
+
+    return $post;
+});
+
+
+Route::get('/test2', function () {
+    $post = new App\Models\Post;
+    $post->content = 'Laravel demo add';
+    $post->save();
+    return $post;
+});
+
+//搜尋id=1 並刪除
+Route::get('/test3', function () {
+    $post = App\Models\Post::find(1);
+    $post->delete();
+    return App\Models\Post::all();
+});
+
+//多筆刪除
+Route::get('/test4', function () {
+    $post = App\Models\Post::destroy([2,4]);
+    return $post;
+
+});
+
+
+
+Route::get('/sub', function () {
+    $post = new App\Models\Subject;
+    $post->name = '南洲';
+    $post->save();
+    return $post;
+});
+
+
+Route::get('/sub2', function () {
+    $post = App\Models\Subject::find(2);
+    return $post;
+});
+
+Route::get('/sub3', function () {
+    $post = App\Models\Subject::all();
+    return $post;
+});
+
+Route::get('/sub4', function () {
+    $post = App\Models\Subject::find(1);
+    $post->delete();
+
+    return App\Models\Subject::all();
+});
+
+Route::get('/sub5', function () {
+    $post = App\Models\Subject::all();
+    $post->each->update([
+        'name' => 'stitch'
+    ]);
+    return $post;
+});
+*/
