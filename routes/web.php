@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\InspiringController;
 use App\Models\Subject;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,23 @@ Route::get('/about_us', function () {
 //8版預設不會帶入username前綴，所以使用'InspiringController@inspire'會是噴錯
 Route::get('/inspire', [InspiringController::class, 'inspire']);
 
+
+/*
+//練習多對多關聯
+Route::get('/test', function () {
+    $tags = Tag::find(3);
+    $posts = $tags->posts;
+    return $posts;
+});
+
+Route::get('/test2', function () {
+    $posts = App\Models\Post::find(1);
+    $tags = $posts->tags;
+    return $tags;
+
+});
+
+*/
 
 /*
 //學習一對多關聯(注意id資料必須要存在)
