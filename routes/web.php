@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InspiringController;
+use App\Http\Controllers\PostController;
 use App\Models\Post;
 use App\Models\Subject;
 use App\Models\Tag;
@@ -187,3 +188,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/testA', function () {
     echo Auth::check() . "<br />" . Auth::user();
 });
+
+Route::resource('posts', PostController::class);
