@@ -190,3 +190,5 @@ Route::get('/testA', function () {
 });
 
 Route::resource('posts', PostController::class);
+
+

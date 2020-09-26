@@ -1,4 +1,4 @@
-列舉所有文章
+查看全部文章
 <hr />
 @foreach ($posts as $post)
     {{ $post->content }}
