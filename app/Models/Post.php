@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class Post extends Model
 {
     use SoftDeletes;
@@ -32,4 +33,5 @@ class Post extends Model
         //多對多關聯 (belongsToMany 屬於很多)
         return $this->belongsToMany(Tag::class);
     }
+
 }
