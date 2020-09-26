@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -25,6 +26,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        if (is_null(Auth::user())) {
+            return redirect(route('login'));
+        }
         return view('posts.create');
     }
 
@@ -39,6 +43,7 @@ class PostController extends Controller
         $post = new Post;
         $post->content = $request->input('content');
         $post->subject_id = 0;
+        $post->user_id = Auth::id();
         $post->save();
         return redirect(route('posts.index'));
     }
@@ -62,6 +67,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $user = Auth::user();
+        if (is_null($user) || $user->cant('update', $post)) {
+            return redirect(route('posts.index'));
+        }
         return view('posts.edit', ['post' => $post]);
     }
 

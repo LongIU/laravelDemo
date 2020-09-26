@@ -34,4 +34,12 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
